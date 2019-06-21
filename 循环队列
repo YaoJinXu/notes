@@ -1,0 +1,57 @@
+public class MyQueen {
+    private int[] array;
+    private int front;  //队头
+    private int rear;   //队尾
+    /**
+     * @param  capacity 容量
+     */
+    public MyQueen(int capacity){
+        this.array = new int[capacity];
+    }
+    /**
+     * 入队
+     * @param  element 入队的元素
+     */
+    public void enQueue(int element) throws  Exception{
+        if((rear + 1) % array.length == front) {
+            throw  new Exception("队列已满！");
+        }
+        array[rear] = element;
+        rear = (rear + 1) % array.length; //取模计算下标
+    }
+    /**
+     * 出队
+     */
+    public  int  deQueue() throws  Exception{
+        if (rear == front){
+            throw  new  Exception("队列已经空了");
+        }
+        int deQueueElement = array[front];
+        front = (front + 1) % array.length;
+        return  deQueueElement;
+    }
+    /**
+     * 输出队列
+     */
+    public void  output(){
+        for(int i = front;i!=rear; i=(i+1)%array.length){
+            System.out.println(array[i]);
+        }
+        
+    public static void main(String[] args) throws Exception{
+        MyQueen myQueen = new MyQueen(6);
+        myQueen.enQueue(3);
+        myQueen.enQueue(5);
+        myQueen.enQueue(6);
+        myQueen.enQueue(8);
+        myQueen.enQueue(1);
+        myQueen.deQueue();
+        myQueen.deQueue();
+        myQueen.deQueue();
+        myQueen.enQueue(2);
+        myQueen.enQueue(4);
+        myQueen.enQueue(9);
+        myQueen .output();
+    }
+    }
+}
